@@ -41,3 +41,25 @@
 .welcome__picture { /* provisional */
   height: 100px;
 }
+
+.landings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#map {
+  height: 50vh;
+  width: 80vw;
+  align-self: center;
+}
+
+.landings__list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.landings__list > div {
+  margin: 10px;
+}

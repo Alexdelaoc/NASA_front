@@ -13,10 +13,15 @@ const Welcome = () => {
 
   return (
     <div className="welcome">
-      <h2 className="">Welcome to the NASA app</h2>
+      { loading 
+      ? <p>Loading...</p> 
+      : <div>
+        <h2 className="">Welcome to the NASA app</h2>
       <h4 className="">Here's the picture of the day</h4>
       <img src={picture} className="welcome__picture" alt="apod"/>
       <p>{explanation}</p>
+      </div> }
+      
     </div>
   );
 }
