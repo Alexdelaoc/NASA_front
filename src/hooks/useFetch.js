@@ -12,14 +12,14 @@ const useFetch = (url) => {
                 setTimeout(() => {
                     setResult(response.data)
                     setLoading(false)
-                }, 5000);
+                }, 3000);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData();
     }, [url]);
-    
+
     return { loading, result }
 }
 
