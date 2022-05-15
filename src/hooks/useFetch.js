@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useFetch = (url) => {
-    const [loading, setLoading] = useState(true)
-    const [result, setResult] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [result, setResult] = useState([]);
 
     useEffect(() => {
         async function fetchData() {

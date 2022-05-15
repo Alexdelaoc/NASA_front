@@ -1,33 +1,45 @@
 // React
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
+import LandingsList from "./LandingsList/LandingsList";
 import useFetch from "../../../hooks/useFetch";
 
 // React Leaflet
 import { MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import * as L from 'leaflet';
 
-// React Paginator
-import Paginator from "react-hooks-paginator";
-
 // .env
-const landingsUrl = process.env.REACT_APP_LANDINGS_API;
-
+const url = process.env.REACT_APP_LANDINGS_API;
 
 const Landings = () => {
 
-  // HTTP request to the API
-  const {loading, result} = useFetch(landingsUrl); // Petición de todos los datos de la API
+  const [ query, setQuery ] = useState("landings");
+  const [ currentResult, setCurrentResult ] = useState([]); // Sets Items from the API per page
+  const { loading, result } = useFetch(url + query); // Gets data from the API
 
-  // Paginator
-  const pageLimit = 20; // Límite de items por página
 
-  const [offset, setOffset] = useState(0);
-  const [currentResult, setCurrentResult] = useState([]); // Datos de la API por página en la lista
-  const [currentPage, setCurrentPage] = useState(1);
+  const setChildResult = (data) => {
+    setCurrentResult(data) // Passes data from the initial request to the LandingsList child
+  };
+  
+  // Submit handler
+  const handleNameSubmit = (e) => {
+    e.preventDefault();
+    setQuery("landings/name/" + e.target.name.value); // Sets the route of the query to be done.
+    setCurrentResult(currentResult) // Updates the currentResult.
+  };
 
-  useEffect(() => {
-    setCurrentResult(result.slice(offset, offset + pageLimit));
-  }, [offset, result]);
+  const handleClassSubmit = (e) => {
+    e.preventDefault();
+    setQuery("landings/class/" + e.target.class.value); // Sets the route of the query to be done.
+    setCurrentResult(currentResult) // Updates the currentResult.
+  };
+
+  const handleMassSubmit = (e) => {
+    e.preventDefault();
+    setQuery("landings/mass/" + e.target.mass.value); // Sets the route of the query to be done.
+    setCurrentResult(currentResult) // Updates the currentResult.
+  };
+
 
   // React Leaflet
   const LeafletIcon = L.Icon.extend({
@@ -39,6 +51,7 @@ const Landings = () => {
     iconSize: [14, 14]
   });
 
+  // Function for painting a marker in the map for each landing
   const paintMarkers = () => {
     return currentResult.map(
       (item, i) => (
@@ -52,28 +65,16 @@ const Landings = () => {
         : []
       )
     )
-  }
-  
-  const paintLandings = () => {
-    return currentResult.map(
-      (landing, i) => (
-        <div key={i}>
-          <p>Name: {landing.name}</p>
-          <p>Class: {landing.recclass}</p>
-        </div>
-        
-      )
-    )
-  }
+  };
 
   return(
-    <div className="landings">
+    <section className="landings">
 
       <h1>Landings</h1>
       <MapContainer 
       id="map" 
       center={[51.505, -0.09]} 
-      zoom={3} 
+      zoom={2} 
       scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -86,18 +87,23 @@ const Landings = () => {
         : paintMarkers() }
       </MapContainer>
 
-      <section className="landings__list">
-        {paintLandings()}
-      </section>
-      <Paginator
-          totalRecords={result.length}
-          pageLimit={pageLimit}
-          pageNeighbours={4}
-          setOffset={setOffset}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-    </div>
+      <h3>Looking for a landing?</h3>
+      <form onSubmit={handleNameSubmit}>
+        <input type="text" name="name" placeholder="Name of the landing"/> <br />
+        <input type="submit" />
+      </form>
+      <form onSubmit={handleClassSubmit}>
+        <input type="text" name="class" placeholder="Class of the landing"/> <br />
+        <input type="submit"/>
+      </form>
+      <form onSubmit={handleMassSubmit}>
+        <input type="text" name="mass" placeholder="Mass of the landing"/> <br />
+        <input type="submit"/>
+      </form>
+
+      <LandingsList data={result} setChildResult={setChildResult}/>
+
+    </section>
   ) 
 };
 
