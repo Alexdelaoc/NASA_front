@@ -2,16 +2,27 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Paginator from "react-hooks-paginator";
+import Expanded from "../Expanded/Expanded";
+
+// Material UI
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
+// UUID
+import { v4 as uuidv4 } from 'uuid';
 
 const LandingsList = (props) => {
 
   // Paginator
-  const pageLimit = 10; // Límite de items por página
+  const pageLimit = 10; // Items limit per page
 
   const [offset, setOffset] = useState(0);
-  const [currentResult, setCurrentResult] = useState([]); // Items de la API por página en la lista
+  const [currentResult, setCurrentResult] = useState([]); // API items per page
   const [currentPage, setCurrentPage] = useState(1);
 
+  // useEffects
   useEffect(() => {
     setCurrentResult(props.data.slice(offset, offset + pageLimit));
   }, [offset, props.data]); // Slices the total array in segments (pages)
@@ -23,18 +34,25 @@ const LandingsList = (props) => {
   // Function for painting the cards in the list
   const paintLandings = () => {
     return currentResult.map(
-      (landing, i) => (
-        <div key={i}>
-          <p>Name: {landing.name}</p>
-          <p>Date: {landing.year}</p>
-          <p>Mass: {landing.mass}</p>
-        </div>
+      (landing) => (
+        <Card key={uuidv4()} sx={{ width: 340, margin: 1 }}>
+          <CardHeader
+            title={landing.name}
+            subheader={landing.recclass}
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Mass: {landing.mass}
+            </Typography>
+          </CardContent>
+          <Expanded data={landing} />
+        </Card>
       )
     )
   };
 
   return (
-    <div>
+    <div> 
       <article className="landings__list">
         {paintLandings()}
       </article>
