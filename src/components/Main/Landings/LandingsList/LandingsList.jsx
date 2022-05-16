@@ -9,6 +9,7 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 // UUID
 import { v4 as uuidv4 } from 'uuid';
@@ -40,7 +41,7 @@ const LandingsList = (props) => {
             title={landing.name}
             subheader={landing.recclass}
           />
-          <CardContent>
+          <CardContent style={{padding:0}}>
             <Typography variant="body2" color="text.secondary">
               Mass: {landing.mass}
             </Typography>

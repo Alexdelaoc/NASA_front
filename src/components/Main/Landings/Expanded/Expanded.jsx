@@ -19,7 +19,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const Expanded = (props) => {
-  
+
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -28,7 +28,7 @@ const Expanded = (props) => {
 
   return (
     <div>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing style={{padding:3}}>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
