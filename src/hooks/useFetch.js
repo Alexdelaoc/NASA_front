@@ -9,8 +9,12 @@ const useFetch = (url) => {
         async function fetchData() {
             try {
                 const response = await axios.get(url)
-                    setResult(response.data)
-                    setLoading(false)
+                    if (response.data.msg) {
+                        setLoading(false) // If the API request gives error, it doesn't set the result state, just the loading one.
+                    } else {
+                        setResult(response.data);
+                        setLoading(false)
+                    }
             } catch (error) {
                 console.log(error);
             }
