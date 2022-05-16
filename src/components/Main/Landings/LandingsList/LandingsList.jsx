@@ -29,7 +29,7 @@ const LandingsList = (props) => {
 
   useEffect(() => {
     props.setChildResult(currentResult)
-  }) // Listens to every change in the app, so it updates the state.
+  }) // Listens to every change in the app, so it updates the state. It gives the current data in the pages and sends it to the map
 
   // Function for painting the cards in the list
   const paintLandings = () => {
@@ -52,11 +52,7 @@ const LandingsList = (props) => {
   };
 
   return (
-    <div> 
-      <article className="landings__list">
-        {paintLandings()}
-      </article>
-
+    <div>
       <Paginator
         totalRecords={props.data.length}
         pageLimit={pageLimit}
@@ -65,6 +61,9 @@ const LandingsList = (props) => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
+      <article className="landings__list">
+        {paintLandings()}
+      </article>
     </div>
   )
 };

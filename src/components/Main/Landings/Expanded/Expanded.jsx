@@ -1,4 +1,7 @@
+// React
 import React, { useState } from "react";
+
+// Material UI
 import { styled } from "@mui/material/styles";
 import { CardContent, CardActions, Collapse, IconButton, Typography, } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -16,7 +19,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const Expanded = (props) => {
-
+  
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {

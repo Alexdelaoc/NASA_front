@@ -17,10 +17,6 @@
   color: #61dafb;
 }
 
-.welcome__picture { /* provisional */
-  height: 100px;
-}
-
 .landings {
   display: flex;
   flex-direction: column;

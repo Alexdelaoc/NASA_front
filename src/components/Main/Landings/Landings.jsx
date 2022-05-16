@@ -8,7 +8,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import * as L from 'leaflet';
 
 // Material UI
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 
 // .env
 const url = process.env.REACT_APP_LANDINGS_API;
@@ -73,7 +73,7 @@ const Landings = () => {
   return (
     <section className="landings">
 
-      <h1>Landings</h1>
+      <Typography variant="h5">Landings</Typography>
       <MapContainer
         id="map"
         center={[51.505, -0.09]}
@@ -90,9 +90,10 @@ const Landings = () => {
           : paintMarkers()}
       </MapContainer>
 
-      <h3>Looking for a landing?</h3>
-      <form onSubmit={handleSubmit}>
+      <Typography variant="h6">Looking for a landing?</Typography>
+      <form onSubmit={handleSubmit} className="landings__form">
         <TextField
+          className="landings__form-field"
           id="1"
           label="Name of the landing."
           variant="outlined"
@@ -103,6 +104,7 @@ const Landings = () => {
             setMass("")
           }}></TextField>
         <TextField
+          className="landings__form-field"
           id="2"
           label="Class of the landing."
           variant="outlined"
@@ -113,6 +115,7 @@ const Landings = () => {
             setMass("")
           }}></TextField>
         <TextField
+          className="landings__form-field"
           id="3"
           label="Mass of the landing."
           variant="outlined"
