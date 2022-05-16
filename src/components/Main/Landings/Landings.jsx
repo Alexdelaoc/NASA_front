@@ -27,7 +27,6 @@ const Landings = () => {
   };
 
   // Submit handler
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name !== "") {

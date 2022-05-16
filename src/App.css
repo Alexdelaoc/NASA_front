@@ -51,6 +51,7 @@
 #map {
   height: 50vh;
   width: 80vw;
+  max-width: 900px;
   align-self: center;
 }
 
