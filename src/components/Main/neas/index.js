@@ -1,1 +1,1 @@
-export { default } from "./neas";
+export { default } from "./Neas";
