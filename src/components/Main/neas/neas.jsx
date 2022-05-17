@@ -11,8 +11,10 @@ const url = process.env.REACT_APP_API;
 
 const Neas = () => {
 
-  const [query, setQuery] = useState("neas");
-  const { loading, result } = useFetch(url + query); // Gets data from the API
+  // eslint-disable-next-line
+  const [query, setQuery] = useState("neas"); 
+  // eslint-disable-next-line
+  const { loading, result } = useFetch(url + query);
   
   return(
     <section className="neas">
