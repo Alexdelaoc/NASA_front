@@ -28,7 +28,7 @@ const Expanded = (props) => {
 
   return (
     <div>
-      <CardActions disableSpacing style={{padding:3}}>
+      <CardActions disableSpacing style={{ padding: 3 }}>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

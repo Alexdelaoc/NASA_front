@@ -11,7 +11,7 @@ import * as L from 'leaflet';
 import { TextField, Button, Typography } from "@mui/material";
 
 // .env
-const url = process.env.REACT_APP_LANDINGS_API;
+const url = process.env.REACT_APP_API;
 
 const Landings = () => {
 

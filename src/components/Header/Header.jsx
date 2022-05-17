@@ -100,7 +100,7 @@ function Header() {
                 </Link>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to="/landings" style={{ color: "#2C414E", textDecoration: "none" }}>
+                <Link to="/neas" style={{ color: "#2C414E", textDecoration: "none" }}>
                   <Typography textAlign="center">
                     Near Earth Objects
                   </Typography>
@@ -140,7 +140,7 @@ function Header() {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to="/landings" className="nav__element">
+              <Link to="/neas" className="nav__element">
                 <Typography textAlign="center">
                   Near Earth Objects
                 </Typography>
