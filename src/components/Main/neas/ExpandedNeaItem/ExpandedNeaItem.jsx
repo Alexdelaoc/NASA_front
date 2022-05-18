@@ -3,9 +3,9 @@ import React, { useState } from "react";
 
 // Material UI
 import { styled } from "@mui/material/styles";
-import { CardContent, CardActions, Collapse, IconButton, Typography, } from "@mui/material"
+import { CardContent, CardActions, Collapse, IconButton, Typography, Button, } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 // Externalizing the expanding funtionality so we can give it it's own expanded state
 const ExpandMore = styled((props) => {
@@ -30,6 +30,9 @@ const ExpandedNeaItem = (props) => {
   return (
     <div>
       <CardActions disableSpacing style={{ padding: 3 }}>
+        <Button>
+          <AddShoppingCartRoundedIcon style={{color: "#0E161B"}}></AddShoppingCartRoundedIcon>
+        </Button>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -38,6 +41,7 @@ const ExpandedNeaItem = (props) => {
         >
           <ExpandMoreIcon />
         </ExpandMore>
+
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
